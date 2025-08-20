@@ -70,7 +70,7 @@ def register(bot):
             user_id = message.chat.id
             task_text = message.text.strip()
             from datetime import datetime
-            today = datetime.now().strftime("%Y-%m-%d %H:%M")
+            today = datetime.now().strftime('%d.%m.%Y %H:%M')
 
             add_task(user_id, task_text, today)
             bot.send_message(user_id, f"✅ Задача добавлена: {task_text}")
@@ -95,7 +95,7 @@ def register(bot):
         try:
             tasks = [task.strip() for task in message.text.split('\n') if task.strip()] # каждая строка – новая задача
             for task_text in tasks:
-                    add_task(user_id, task_text.strip(), datetime.now())
+                    add_task(user_id, task_text.strip(), datetime.now().strftime('%d.%m.%Y %H:%M'))
             bot.send_message(user_id, f'✅ Добавлено {len(tasks)} задач!')
         except Exception as e:
             logging.error(f'Ошибка при добавлении задач: {e}')
